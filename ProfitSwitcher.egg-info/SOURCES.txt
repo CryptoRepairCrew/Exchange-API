@@ -1,0 +1,5 @@
+setup.py
+ProfitSwitcher.egg-info/PKG-INFO
+ProfitSwitcher.egg-info/SOURCES.txt
+ProfitSwitcher.egg-info/dependency_links.txt
+ProfitSwitcher.egg-info/top_level.txt
