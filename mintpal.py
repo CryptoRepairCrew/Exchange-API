@@ -36,34 +36,31 @@ class mintpal:
    # Account Requests
    # Get All Blances
    def getBalances(self):
-       return self.api_query("wallet/balances")
+       return self.getBalance("")
 
    # Get 1 Coins Balance
    def getBalance(self, currency):
-       params = {'apikey': self.APIKey, 'currency': currency}
-       return self.api_query("https://bittrex.com/api/v1.1/account/getbalance", payload=params)
+       return self.api_query("wallet/balances/" + currency)
 
    # Get Deposit Address
    def getDepositAddress(self, currency):
-       params = {'apikey': self.APIKey, 'currency': currency}
-       return self.api_query("https://bittrex.com/api/v1.1/account/getdepositaddress", payload=params)
+       return self.api_query("wallet/depositaddress/" + currency)
 
    # Withdraw Coins
    def withdrawCoins(self, currency, quantity, address):
-       params = {'apikey': self.APIKey, 'currency': currency, 'quantity': quantity, 'address': address }
-       return self.api_query("https://bittrex.com/api/v1.1/account/withdraw", payload=params)
+       params = {'address': address, 'ammount': quantity }
+       return self.api_query("wallet/withdraw/" + currency, payload=params)
 
    # Get Order History
    def getOrderHistory(self, market, count):
-       params = {'apikey': self.APIKey, 'count': count}
-       return self.api_query("https://bittrex.com/api/v1.1/account/getorderhistory", payload=params)
+       #order history not available on Mintpal
+       return None
 
    # Get Withdrawal History
    def getWithdrawalHistory(self, currency, count):
-       params = {'apikey': self.APIKey, 'currency': currency, 'count': count}
-       return self.api_query("https://bittrex.com/api/v1.1/account/getwithdrawalhistory", payload=params)
+       return self.api_query("wallet/withdrawals/" + currency + "/0/" + str(count))
 
    # Get Deposit History
    def getDepositHistory(self, currency, count):
-       params = {'apikey': self.APIKey, 'currency': currency, 'count': count }
-       return self.api_query("https://bittrex.com/v1.1/account/getdeposithistory", payload=params)
+       return self.api_query("wallet/deposits/" + currency + "/0/" + str(count))
+
